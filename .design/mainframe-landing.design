@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "id": "image-001",
+      "title": "Monkey Hero Poster",
+      "type": "image",
+      "version": 4,
+      "createdAt": 1755080700000,
+      "canvasData": {
+        "x": 1500,
+        "y": 0,
+        "naturalSize": {
+          "width": 2560,
+          "height": 1440
+        }
+      },
+      "devMetadata": {
+        "imageSrc": "assets/monkey-poster.jpg"
+      }
+    },
+    {
+      "id": "page-index",
+      "title": "Home",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1755080700000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-bef0e780",
+          "measuredAt": 1786594727982
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": []
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": false,
+    "deviceType": "desktop",
+    "projectName": "AI技能提升中心",
+    "visualEditorEnabled": false,
+    "showEdge": false
+  }
+}
