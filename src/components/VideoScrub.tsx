@@ -13,7 +13,6 @@ export function VideoScrub({ src, poster }: VideoScrubProps) {
   const prevXRef = useRef<number | null>(null)
   const isSeekingRef = useRef(false)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [hasVideoError, setHasVideoError] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
@@ -24,15 +23,9 @@ export function VideoScrub({ src, poster }: VideoScrubProps) {
       setIsLoaded(true)
     }
 
-    const handleError = () => {
-      setHasVideoError(true)
-    }
-
     video.addEventListener('loadedmetadata', handleLoadedMetadata)
-    video.addEventListener('error', handleError)
     return () => {
       video.removeEventListener('loadedmetadata', handleLoadedMetadata)
-      video.removeEventListener('error', handleError)
     }
   }, [])
 
@@ -96,31 +89,34 @@ export function VideoScrub({ src, poster }: VideoScrubProps) {
     }
   }, [isLoaded])
 
-  // Fallback: show poster image with subtle breathing animation if video fails
-  if (hasVideoError && poster) {
-    return (
-      <img
-        src={poster}
-        alt=""
+  // Poster image is always visible first (img-first for reliability).
+  // Once video metadata loads, video overlays on top for scrub interaction.
+  return (
+    <>
+      {poster && (
+        <img
+          src={poster}
+          alt=""
+          className="fixed inset-0 z-0 h-full w-full object-cover"
+          style={{
+            objectPosition: '70% center',
+            animation: 'monkey-breath 8s ease-in-out infinite',
+          }}
+        />
+      )}
+      <video
+        ref={videoRef}
+        src={src}
+        muted
+        playsInline
+        preload="auto"
         className="fixed inset-0 z-0 h-full w-full object-cover"
         style={{
           objectPosition: '70% center',
-          animation: 'monkey-breath 8s ease-in-out infinite',
+          opacity: isLoaded ? 1 : 0,
+          transition: 'opacity 0.3s ease',
         }}
       />
-    )
-  }
-
-  return (
-    <video
-      ref={videoRef}
-      src={src}
-      poster={poster}
-      muted
-      playsInline
-      preload="auto"
-      className="fixed inset-0 z-0 h-full w-full object-cover"
-      style={{ objectPosition: '70% center' }}
-    />
+    </>
   )
 }
