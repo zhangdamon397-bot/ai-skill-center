@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const BASE_POSITION = 70 // percentage
+const BASE_POSITION = 80 // percentage
 const PARALLAX_RANGE = 4 // total range, ±2% from center
 
 interface VideoScrubProps {
