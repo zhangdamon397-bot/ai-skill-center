@@ -2,8 +2,8 @@ import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { VideoScrub } from './components/VideoScrub'
 
-const VIDEO_URL = '/monkey-hero.mp4'
-const POSTER_URL = '/monkey-poster.jpg'
+const VIDEO_URL = `${import.meta.env.BASE_URL}monkey-hero.mp4`
+const POSTER_URL = `${import.meta.env.BASE_URL}monkey-poster.jpg`
 
 function App() {
   return (
